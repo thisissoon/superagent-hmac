@@ -1,6 +1,8 @@
 # Superagent HMAC
 
-A plugin for superagent that signs requests with a HMAC signature.
+A plugin for superagent that signs requests with a HMAC signature. To generate a signature
+a client ID and secret is required. By default the signature is generated in
+base64(id:signature) format. Options have been provdided to configure this.
 
 ## Install
 
@@ -24,3 +26,12 @@ request
     console.log(response);
   });
 ```
+
+## Options
+
+- `clientId` ID of client making request (required)
+- `clientSecret` secret for client making request (required)
+- `algorithm` signature hashing algorithm, defaults to sha256
+- `encoding` defaults to base64
+- `separator` character to use to separate client id and signature, defaults to `:`
+- `header` request header used to add signature, defaults to signature
