@@ -1,16 +1,22 @@
 'use strict';
+var _defaults = require('lodash/object/defaults');
+
 /**
  * Middleware to sign the request
  * @module superagent-hmac
  */
 var superagentHmac = function superagentHmac(options) {
 
+  options = _defaults(options, {
+    header: 'signature'
+  });
+
   var hmac = require('./lib/hmac')(options);
 
   return function signRequest (req) {
 
     // Signature for requests without body
-    req.set('signature', hmac.sign());
+    req.set(options.header, hmac.sign());
 
     // Store reference to original send method
     var sendOriginal = req.send;
@@ -22,7 +28,7 @@ var superagentHmac = function superagentHmac(options) {
      * @returns {Function} orignal send function
      */
     req.send = function signAndSend (data) {
-      req.set('signature', hmac.sign(data));
+      req.set(options.header, hmac.sign(data));
       return sendOriginal.call(this, data);
     };
 
