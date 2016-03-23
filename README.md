@@ -1,5 +1,7 @@
 # Superagent HMAC
 
+[![CircleCI](https://img.shields.io/circleci/project/thisissoon/superagent-hmac.svg)](https://circleci.com/gh/thisissoon/superagent-hmac)
+
 A plugin for superagent that signs requests with a HMAC signature. To generate a signature
 a client ID and secret is required. By default the signature is generated in
 base64(id:signature) format, options have been provdided to configure this.
