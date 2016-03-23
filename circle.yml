@@ -4,7 +4,7 @@
 
 machine:
   node:
-    version: 5.7
+    version: 5.9
 
 dependencies:
   override:
@@ -13,7 +13,7 @@ dependencies:
 
 test:
   override:
-    - nvm use 5.7 && npm test # Node Latest (Stable)
+    - nvm use 5.9 && npm test # Node Latest (Stable)
     - nvm use 4.4 && npm run test # Node LTS (Mature)
   post:
-    - nvm use 5.7
+    - nvm use 5.9
