@@ -1,0 +1,19 @@
+#
+# CircleCI Configuration
+#
+
+machine:
+  node:
+    version: 5.7
+
+dependencies:
+  override:
+    - nvm install 4.4
+    - npm install
+
+test:
+  override:
+    - nvm use 5.7 && npm test # Node Latest (Stable)
+    - nvm use 4.4 && npm run test # Node LTS (Mature)
+  post:
+    - nvm use 5.7
