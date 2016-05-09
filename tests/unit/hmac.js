@@ -18,12 +18,13 @@ describe('HMAC', function () {
     body = { name: 'foo' };
 
     generateComparison = function generateComparison (body) {
+      body = JSON.stringify(body);
       return crypto.createHmac('sha256', 'abc')
         .update(body)
         .digest('base64');
     };
 
-    compareSig = generateComparison(JSON.stringify(body));
+    compareSig = generateComparison(body);
   });
 
   it('should return signature as base64(id:signature)', function () {
@@ -41,12 +42,6 @@ describe('HMAC', function () {
     // With undefined data
     var signature = hmac.sign();
     var parts = new Buffer(signature, 'base64').toString().split(':', 2);
-    expect(parts[0]).to.equal('service');
-    expect(parts[1]).to.equal(compareSig);
-
-    // With empty data object
-    signature = hmac.sign({});
-    parts = new Buffer(signature, 'base64').toString().split(':', 2);
     expect(parts[0]).to.equal('service');
     expect(parts[1]).to.equal(compareSig);
   });
