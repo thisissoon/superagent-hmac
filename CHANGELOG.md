@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3
+
+ * @jamesjwarren: Fix: signing empty object
+
 ## 0.1.2
 
  * @jamesjwarren: Fix: run tests on CI
